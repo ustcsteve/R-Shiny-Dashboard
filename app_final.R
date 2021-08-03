@@ -76,9 +76,9 @@ ui <- fluidPage(
     sidebarPanel(
       selectInput(inputId = "lake", "Choose a lake:",
                   choices = lake_list),
-      actionButton(inputId = "action", "Run"),
       h3("Choose a year to visualize fish stock"),
-      sliderInput(inputId = "YEAR", "Year:", sep = "", min = 1950,  max = 2018, value = 2018, step = 1),  
+      sliderInput(inputId = "YEAR", "Year:", sep = "", min = 1950,  max = 2018, value = 2018, step = 1), 
+      actionButton(inputId = "action", "Run"),
       tableOutput(outputId ="Species_table")
     ),
     mainPanel(
@@ -98,7 +98,7 @@ server <- function(input, output) {
     input$action,{ 
       withProgress({
         setProgress(message = "Getting Fish...")
-        df%>%filter(df$YEAR==input$YEAR)
+        df%>%filter(df$YEAR==input$YEAR&df$LAKE==input$lake)
       })
     }
   )
@@ -108,7 +108,6 @@ server <- function(input, output) {
     pal <- brewer.pal(8,"Dark2")
     
     v %>% 
-      filter(v$LAKE==input$lake)%>%
       ggplot(aes(x=SPECIES, y=NO_STOCKED, fill = STATE_PROV))+
       geom_bar(stat="identity")+
       labs(title = "Number of Fish Stocked",
@@ -131,7 +130,6 @@ server <- function(input, output) {
     pal <- brewer.pal(8,"Dark2")
     
     v %>% 
-      filter(v$LAKE==input$lake)%>%
       ggplot(aes(x=SPECIES, y=WEIGHT, fill = STATE_PROV))+
       geom_bar(stat="identity")+
       labs(title = "Weight of Fish Stocked",
@@ -154,7 +152,6 @@ server <- function(input, output) {
     pal <- brewer.pal(8,"Dark2")
     
     v %>% 
-      filter(v$LAKE==input$lake)%>%
       ggplot(aes(x=SPECIES, y=NO_STOCKED, fill = CONDITION))+
       geom_bar(position= "dodge", stat="identity") +
       labs(title = "Condition of Fish Stocked",
@@ -176,7 +173,6 @@ server <- function(input, output) {
     pal <- brewer.pal(8,"Dark2")
     
     v %>% 
-      filter(v$LAKE==input$lake)%>%
       ggplot(aes(x=SPECIES, y=NO_STOCKED, fill = AGEMONTH))+
       geom_bar(position= "dodge", stat="identity")+
       labs(title = "Age of Fish Stocked",
