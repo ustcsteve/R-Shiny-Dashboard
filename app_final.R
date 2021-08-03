@@ -111,7 +111,7 @@ server <- function(input, output) {
       filter(v$LAKE==input$lake)%>%
       ggplot(aes(x=SPECIES, y=NO_STOCKED, fill = STATE_PROV))+
       geom_bar(stat="identity")+
-      labs(title = "Number of Fish stocked",
+      labs(title = "Number of Fish Stocked",
            x = "State Province", y = "Total Number of Fish Stocked",
            fill = "State")+
       theme_wsj() +
