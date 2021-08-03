@@ -74,10 +74,11 @@ ui <- fluidPage(
   
   sidebarLayout(
     sidebarPanel(
-      selectInput(inputId = "lake", "Choose a lake:",
+      h3("Choose a lake to visualize fish stock"),
+      selectInput(inputId = "lake", 
                   choices = lake_list),
       h3("Choose a year to visualize fish stock"),
-      sliderInput(inputId = "YEAR", "Year:", sep = "", min = 1950,  max = 2018, value = 2018, step = 1), 
+      sliderInput(inputId = "YEAR", sep = "", min = 1950,  max = 2018, value = 2018, step = 1), 
       actionButton(inputId = "action", "Run"),
       tableOutput(outputId ="Species_table")
     ),
