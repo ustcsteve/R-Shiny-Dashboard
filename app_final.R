@@ -3,6 +3,7 @@ library(purrr)
 library(tidyr)
 library(ggplot2)
 library(dplyr)
+library(scales)
 library(Hmisc)
 library(shinythemes)
 library(RColorBrewer)
@@ -43,6 +44,7 @@ df$CONDITION = as.factor(df$CONDITION)
 #create csv of cleaned data
 write.csv(df,"stocked_clean.csv", row.names = FALSE)
 
+#df<-read.csv("stocked_clean.csv")
 
 # List of 6 lakes
 lake_list<-list("Michigan" = "MI",
@@ -119,6 +121,7 @@ server <- function(input, output) {
         axis.title = element_blank()
       ) +
       facet_wrap(~STATE_PROV, scales = "free_y")+
+      scale_y_continuous(labels = comma)+
       theme(legend.position = "none",
             strip.text = element_text(size = 20))+
       theme(plot.title = element_markdown(size = 26, hjust = 0.5),
@@ -134,13 +137,14 @@ server <- function(input, output) {
       ggplot(aes(x=SPECIES, y=WEIGHT, fill = STATE_PROV))+
       geom_bar(stat="identity")+
       labs(title = "Weight of Fish Stocked",
-           x = "State Province", y = "Weight",
+           x = "State Province", y = "Weight (in Thousand Pounds)",
            fill = "State")+
       theme_wsj() +
       theme(
         axis.title = element_blank(),
       )+
       facet_wrap(~STATE_PROV, scales = "free_y")+
+      scale_y_continuous(labels = comma)+
       theme(legend.position = "none",
             strip.text = element_text(size = 20))+
       theme(plot.title = element_markdown(size = 30, hjust = 0.5),
@@ -164,6 +168,7 @@ server <- function(input, output) {
         strip.text = element_text(size = 20)
         )+
       facet_wrap(~STATE_PROV, scales = "free_y") +
+      scale_y_continuous(labels = comma)+
       theme(plot.title = element_markdown(size = 30, hjust = 0.5),
             axis.title.x.bottom=element_text(size =16, face="bold", vjust=-5.0),
             axis.title.y.left=element_text(size =16, face="bold", vjust=5.0),
@@ -186,6 +191,7 @@ server <- function(input, output) {
         strip.text = element_text(size = 20)
       )+
       facet_wrap(~STATE_PROV, scales = "free_y") +
+      scale_y_continuous(labels = comma)+
       theme(plot.title = element_markdown(size = 30, hjust = 0.5),
             axis.title.x.bottom=element_text(size =16, face="bold", vjust=-5.0),
             axis.title.y.left=element_text(size =16, face="bold", vjust=5.0),
