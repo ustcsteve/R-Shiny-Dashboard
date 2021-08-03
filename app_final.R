@@ -119,7 +119,8 @@ server <- function(input, output) {
         axis.title = element_blank()
       ) +
       facet_wrap(~STATE_PROV, scales = "free_y")+
-      theme(legend.position = "none")+
+      theme(legend.position = "none",
+            strip.text = element_text(size = 20))+
       theme(plot.title = element_markdown(size = 26, hjust = 0.5),
             axis.title.x.bottom=element_text(size =16, face="bold", vjust=-5.0),
             axis.title.y.left=element_text(size =16, face="bold", vjust=5.0),
@@ -141,7 +142,8 @@ server <- function(input, output) {
         axis.title = element_blank(),
       )+
       facet_wrap(~STATE_PROV, scales = "free_y")+
-      theme(legend.position = "none")+
+      theme(legend.position = "none",
+            strip.text = element_text(size = 20))+
       theme(plot.title = element_markdown(size = 30, hjust = 0.5),
             axis.title.x.bottom=element_text(size =16, face="bold", vjust=-5.0),
             axis.title.y.left=element_text(size =16, face="bold", vjust=5.0),
@@ -160,7 +162,8 @@ server <- function(input, output) {
       theme_wsj() +
       theme(
         axis.title = element_blank(),
-        legend.margin = margin(20,0,0,0) 
+        legend.margin = margin(20,0,0,0),
+        strip.text = element_text(size = 20)
         )+
       facet_wrap(~STATE_PROV, scales = "free_y") +
       theme(plot.title = element_markdown(size = 30, hjust = 0.5),
@@ -182,7 +185,8 @@ server <- function(input, output) {
       theme_wsj() +
       theme(
         axis.title = element_blank(),
-        legend.margin = margin(20,0,0,0) 
+        legend.margin = margin(20,0,0,0),
+        strip.text = element_text(size = 20)
       )+
       facet_wrap(~STATE_PROV, scales = "free_y") +
       theme(plot.title = element_markdown(size = 30, hjust = 0.5),
