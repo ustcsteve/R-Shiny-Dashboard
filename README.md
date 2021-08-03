@@ -5,6 +5,6 @@ This is a group project presented by Siqi Li, Mariam Olupitan, Caroline Valade a
 Our main objective was to build an application that could identify which species and what type of fish needed to be restocked in which areas of the Great Lakes.
 
 
-Below is the link to R-Shiny-Dashboard (Some data wwere not available for display.)
+Below is the link to R-Shiny-Dashboard (Some data were not available for display.)
 
 https://ustcsteve.shinyapps.io/Great-Lakes-Fish-Stock/
